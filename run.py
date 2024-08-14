@@ -1,11 +1,12 @@
 from tkinter import Tk, Frame, Entry, Text, Button, Label, filedialog, PhotoImage, BOTH, END
+from getToken import get_token
 import pandas as pd
 import requests
 import os
 import dotenv
 
 dotenv.load_dotenv()
-TOKEN = os.getenv('TOKEN')
+TOKEN = get_token()
 
 
 def send_sms(token, mobile_phone, message, from_number, callback_url):
