@@ -102,14 +102,15 @@ class SendSMS:
             for i, number in enumerate(df[self.excel_column.get()]):
                 mobile_phone = str(number).strip()
                 message = message_text
-                from_number = "4546"
-                callback_url = "http://0000.uz/test.php"
-                response = send_sms(TOKEN, mobile_phone, message, from_number, callback_url)
-                # print(response)
-                if response.get('status') == 'waiting':
-                    success_count += 1
-                else:
-                    failure_count += 1
+                if mobile_phone and mobile_phone.isnumeric():
+                    from_number = "4546"
+                    callback_url = "http://0000.uz/test.php"
+                    response = send_sms(TOKEN, mobile_phone, message, from_number, callback_url)
+                    # print(response)
+                    if response.get('status') == 'waiting':
+                        success_count += 1
+                    else:
+                        failure_count += 1
 
             self.status_label.config(
                 text=f'SMS sent successfully to {success_count} numbers. Failed to send to {failure_count}.',
